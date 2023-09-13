@@ -23,6 +23,13 @@
                                     <label for="defaultFormControlInput" class="form-label">Harga</label>
                                     <input type="text" class="form-control" name="price" placeholder="Harga"
                                         aria-describedby="defaultFormControlHelp" />
+                                    <label for="defaultFormControlInput" class="form-label">Kategori</label>
+                                    <select class="form-select" aria-label="Default select example" name="category_id">
+                                        <option disabledSelect>Pilih Kategori</option>
+                                        <option value="1">CATS</option>
+                                        <option value="2">SNIKERS</option>
+                                    </select>
+
                                 </div>
                             </div>
                         </div>
@@ -32,11 +39,14 @@
                             <h5 class="card-header mb-2">Deskripsi</h5>
                             <div class="card-body">
                                 <div class="mb-3">
+                                    <label for="formFileSm" class="form-label">Stok</label>
+                                    <input class="form-control form-control-sm" name="stok">
+                                </div>
+                                <div class="mb-3">
                                     <label for="formFileSm" class="form-label">Gambar</label>
                                     <input class="form-control form-control-sm" id="formFileSm" name="picture"
                                         type="file">
                                 </div>
-
                                 <label for="defaultFormControlInput" class="form-label">Deskripsi</label>
                                 <div class="form-floating">
                                     <textarea class="form-control" rows="3" name="desc"></textarea>

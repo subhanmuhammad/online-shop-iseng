@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\carousel;
+use App\Models\Categories;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     public function landingpage()
     {
         $product = Produk::all();
+        // dd($product[0]->categories);
         return view('index', compact('product'));
     }
 
@@ -49,6 +51,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'product_name' => 'required',
             'desc' => 'required',
@@ -114,6 +117,8 @@ class DashboardController extends Controller
             'price' => 'required',
             'picture' => 'required',
             'desc' => 'required',
+            'stok' => 'required',
+            'category_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -125,12 +130,15 @@ class DashboardController extends Controller
         $path = 'picture/product/' . $file_name;
         Storage::disk('public')->put($path, file_get_contents($picture));
 
-        $data = new Produk();
-        $data->product_name = $request->product_name;
-        $data->price = $request->price;
-        $data->desc = $request->desc;
-        $data->picture = $file_name;
-        $data->save();
+        $data_produk = new Produk();
+        // $data_categories = new Categories();
+        $data_produk->product_name = $request->product_name;
+        $data_produk->price = $request->price;
+        $data_produk->category_id = $request->category_id;
+        $data_produk->stok = $request->stok;
+        $data_produk->desc = $request->desc;
+        $data_produk->picture = $file_name;
+        $data_produk->save();
         return redirect('/data');
     }
     /**

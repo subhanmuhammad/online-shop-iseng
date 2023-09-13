@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -32,7 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/tambah_data_carousel', [DashboardController::class, 'tambah_data_carousel'])->name('tambah_data_carousel');
 
     Route::get('/tambah_data_jualan', [DashboardController::class, 'tambah_data_jualan'])->name('tambah_data_jualan');
-    Route::get('/lihat_detail/{id}', [ProdukController::class, 'lihat_detail'])->name('lihat_detail');
     Route::post('/store_data_jualan', [DashboardController::class, 'store_data_jualan'])->name('store_data_jualan');
 
     Route::post('/store_data_carousel', [DashboardController::class, 'store_data_carousel'])->name('store_data_carousel');
@@ -41,6 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::post('/tambah_keranjang/{id}', [ProdukController::class, 'tambah_keranjang'])->name('tambah_keranjang');
 });
+
+Route::get('/lihat_detail/{id}', [ProdukController::class, 'lihat_detail'])->name('lihat_detail');
+Route::get('/cats', [CategoriesController::class, 'cats'])->name('cats');
 
 require __DIR__ . '/auth.php';

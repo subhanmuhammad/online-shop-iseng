@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -10,9 +11,10 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function cats()
     {
-        //
+        $produk = Produk::where('category_id', 1)->get();
+        return view('utils.view-cats-categori', compact('produk'));
     }
 
     /**
@@ -20,7 +22,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $produk = Produk::where('category_id', 1)->get();
+        return view('utils.view-cats-categori', compact('produk'));
     }
 
     /**
